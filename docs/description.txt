@@ -6,9 +6,12 @@ Decision: I find this dataset interesting because Germany is a country with a hi
  
 Possible questions:
  
--       Country from the most migrants to Germany (Languages)
--       Movement between Bundesländer
--       Age and sex of the most migrants and concentration in which Bundesland?
+-       Country from the most migrants to Germany per year
+-- Line plot. x=year, y=number. Each line representing an origin country 
+-       Concentration between Bundesländer. Movement
+-- Visualization with a map showing Bundesländer with the most and the less migrants.
+-       Age and sex of the most migrants in Germany
+-- Bar plot. x=age-group, y=number. Bars showing age color diferentiatelly
  
 Side question:
  
