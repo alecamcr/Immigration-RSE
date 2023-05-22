@@ -23,7 +23,7 @@ def main(args):
     else:
         most_migrant = df.loc[df['year'] == 2021]\
             .sort_values('foreigners from foreign countries',
-                         ascending=False).head(args.numcontries)
+                         ascending=False).head(args.numcountries)
         most_migrant = list(most_migrant.iloc[:,1])
         df_countries = df.loc[df['country'].isin(most_migrant)]
         
