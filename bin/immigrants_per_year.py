@@ -23,7 +23,7 @@ def main(args):
     else:
         most_migrant = df.loc[df['year'] == 2021]\
             .sort_values('foreigners from foreign countries',
-                         ascending=False).head(args.num)
+                         ascending=False).head(args.numcontries)
         most_migrant = list(most_migrant.iloc[:,1])
         df_countries = df.loc[df['country'].isin(most_migrant)]
         
@@ -50,7 +50,7 @@ if __name__ == '__main__':
                         help='optional output file name')
     parser.add_argument('-y', '--years', type=int, default=5,
                         help='number of years to be plotted (max 21)')
-    parser.add_argument('-n','--num', type=int, default=5,
+    parser.add_argument('-nc','--numcountries', type=int, default=5,
                         help='number of countries to be plotted\
                             (ordered by the n countries with most migrants)')
     parser.add_argument('-c','--country', type=str, default=None,
