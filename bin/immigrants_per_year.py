@@ -6,39 +6,37 @@ of c chosen countries (by default 5) with biggest migration rate until 2021
 """
 
 import argparse
-import working_paths as pth
+import working_functions as funct
 import pandas as pd
 import seaborn as sns
 
-def main(args):
-    df = pd.read_csv(args.data)
+def draw_line_plot(data, years=5, num_countries=5, country=None):
+    df = pd.read_csv(data)
     df = df.loc[df['country'] != 'Total']
-    
-    end_year = 2021-args.years
-    selected_years = [year for year in range(2021,end_year,-1)]
-    df = df.loc[df['year'].isin(selected_years)]
-    
-    if args.country:
-        df_countries = df.loc[df['country'] == args.country]
-    else:
-        most_migrant = df.loc[df['year'] == 2021]\
-            .sort_values('foreigners from foreign countries',
-                         ascending=False).head(args.numcountries)
-        most_migrant = list(most_migrant.iloc[:,1])
-        df_countries = df.loc[df['country'].isin(most_migrant)]
+    df, selected_years = funct.subset_years(df, years, return_years=True)
+    df_countries = funct.get_most_migrant_countries(df, num_countries, country)
         
-    line_plot = sns.lineplot(data=df_countries, x='year',\
-                 y='foreigners from foreign countries', hue='country')
+    title = funct.make_title(data)
+    line_plot = sns.relplot(data=df_countries, x='year', y='foreigners from foreign countries', hue='country',
+                            kind='line')
+    line_plot.fig.subplots_adjust(top=0.8)
+    line_plot.fig.suptitle(title)
     line_plot.set(xticks=selected_years)
     
-    fig = line_plot.get_figure()
+    return line_plot
+
+
+def main(args):
+    
+    fig = draw_line_plot(args.data, args.years,
+                   args.numcountries, args.country)
     fig.savefig(args.outfile)
     
 
 if __name__ == '__main__':
-    data_path = pth.get_relative_path(
-        'data/12711-0008-Migration between Germany and foreign countries.csv')
-    output_path = pth.get_relative_path(
+    data_path = funct.get_relative_path(
+        'data/12711-0008_external_migration.csv')
+    output_path = funct.get_relative_path(
         'results/immigrants_per_year.png')
     
     parser = argparse.ArgumentParser(description=__doc__)
