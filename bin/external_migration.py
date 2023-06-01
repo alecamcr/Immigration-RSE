@@ -44,7 +44,9 @@ def draw_line_plot(data, years=6, numcountries=5, country=None):
                             hue='country', kind='line')
     line_plot.fig.subplots_adjust(top=0.8)
     line_plot.fig.suptitle(title)
-    line_plot.set(xticks=selected_years)
+    for ax in line_plot.axes.flat:
+        ax.set_xticks(ticks=selected_years) 
+        ax.set_xticklabels(fontsize=8, rotation=90, labels=selected_years)
     
     return line_plot
 
@@ -64,31 +66,38 @@ def draw_bar_plot(data, years=6, num_countries=5, country=None):
     
     bar_plot.fig.subplots_adjust(top=0.8)
     bar_plot.fig.suptitle(title)
+    countries = {count: value for count,value in enumerate(df_to_draw['country'].unique())}
+    indices = [index for index in countries]
+    names = [name for name in countries.values()]
+    for ax in bar_plot.axes.flat:
+        ax.set_xticks(ticks=indices) 
+        ax.set_xticklabels(fontsize=8, rotation=90, labels=names)
     
     return bar_plot
 
 
 
 def main(args):
+    outfiles = [file for file in args.outfile]
     if args.kind:
-        line = args.kind == 'line'
-        bar = args.kind == 'bar'
+        line = (args.kind == 'line')
+        bar = (args.kind == 'bar')
         if line:
             fig = draw_line_plot(args.infile, args.years,
                            args.numcountries, args.country)
-            fig.savefig(args.outfile)
+            fig.savefig(outfiles[0])
         if bar:
             fig = draw_bar_plot(args.infile, args.years,
                            args.numcountries, args.country)
-            fig.savefig(args.outfile)
+            fig.savefig(outfiles[0])
     else:
         line = draw_line_plot(args.infile, args.years,
                            args.numcountries, args.country)
-        line.savefig(args.outfile[0])
+        line.savefig(outfiles[0])
         
         bar = draw_bar_plot(args.infile, args.years,
                            args.numcountries, args.country)
-        bar.savefig(args.outfile[1])
+        bar.savefig(outfiles[1])
 
 if __name__ == '__main__':
     data_path = wf.get_relative_path(

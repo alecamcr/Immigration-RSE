@@ -144,6 +144,24 @@ def subset_age(df, age):
     return df_age
 
 def fedcountry_to_int(data, column=None, return_mapping=False):
+    '''
+    
+
+    Parameters
+    ----------
+    data : TYPE
+        DESCRIPTION.
+    column : TYPE, optional
+        DESCRIPTION. The default is None.
+    return_mapping : TYPE, optional
+        DESCRIPTION. The default is False.
+
+    Returns
+    -------
+    TYPE
+        DESCRIPTION.
+
+    '''
     new_df = data
     to_int = {'Schleswig-Holstein': 0, 'Hamburg': 1, 'Niedersachsen': 2, 'Bremen': 3,
               'Nordrhein-Westfalen': 4, 'Hessen': 5, 'Rheinland-Pfalz': 6,
@@ -163,6 +181,24 @@ def fedcountry_to_int(data, column=None, return_mapping=False):
         return new_df
 
 def fedcountry_to_str(data, column=None, return_mapping=False):
+    '''
+    
+
+    Parameters
+    ----------
+    data : TYPE
+        DESCRIPTION.
+    column : TYPE, optional
+        DESCRIPTION. The default is None.
+    return_mapping : TYPE, optional
+        DESCRIPTION. The default is False.
+
+    Returns
+    -------
+    TYPE
+        DESCRIPTION.
+
+    '''
     new_df = data
     to_str = {0: 'Schleswig-Holstein', 1: 'Hamburg', 2: 'Niedersachsen', 3: 'Bremen',
               4: 'Nordrhein-Westfalen', 5: 'Hessen', 6: 'Rheinland-Pfalz',
