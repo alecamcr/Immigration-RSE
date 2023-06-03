@@ -3,6 +3,23 @@
 """
 File containing important working functions for workflow
 
+Copyright (C) 2023 Alejandra Camelo Cruz
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+contact email: camelocruz@uni-potsdam.de
+
 """
 
 import os
@@ -32,7 +49,10 @@ def get_most_migrant_countries(df, num_countries: int, country=False):
 
     '''
     if country:
-        df_countries = df.loc[df['country'] == country]
+        try:
+            df_countries = df.loc[df['country'] == country]
+        except KeyError:
+            df_countries = df.loc[df['destination'] == country]
 
     elif 'country' in df:
         most_migrant = df.loc[df['year'] == 2021]\

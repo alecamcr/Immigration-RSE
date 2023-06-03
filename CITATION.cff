@@ -1,0 +1,23 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.0.
+title: Important factors of migration to Germany
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Alejandra
+    family-names: Camelo Cruz
+    email: camelocruz@uni-potsdam.de
+    affiliation: University of Potsdam, Institute for Informatics and Computational Science
+repository-code: 'https://gitup.uni-potsdam.de/camelocruz/immigration_rse'
+abstract: >
+  This software aims at summarizing important factors of
+  immigration  in Germany, such as: number of immigrants,
+  origin countries, sex, age, and concentration and movement
+  between Bundesländer.
+license: GPL-3.0-or-later
+version: 1.0.
+date-released: '2023-06-04'

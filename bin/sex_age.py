@@ -6,6 +6,24 @@ per n chosen year (by default 6) with given sex and ages
 (by default sex and female with 10,20,30,40 and 50 years until 2021.
 Infile and outfile names are given by default but can be changed without flag.
 If sex is specified (male, female) only that sex will be plotted.
+
+Copyright (C) 2023 Alejandra Camelo Cruz
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+contact email: camelocruz@uni-potsdam.de
+
 """
 
 import argparse
@@ -66,12 +84,13 @@ if __name__ == '__main__':
         'results/immigrants_sex_age_external.png')
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('infile', type=str, nargs='?',
-                        default=data_path,
-                        help='input file')
-    parser.add_argument('outfile', type=str, nargs='?',
+
+    parser.add_argument('outfile', type=str, nargs='*',
                         default=output_path,
                         help='output file name')
+    parser.add_argument('--infile', type=str, nargs='?',
+                        default=data_path,
+                        help='input file')
     parser.add_argument('-age', '--age_span', nargs='*',
                         default=[10, 20, 30, 40, 50],
                         help='list containing age span to be plotted')

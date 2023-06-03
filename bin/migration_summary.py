@@ -8,6 +8,24 @@ with biggest migration rate until 2021. If country is given
 only that country will be plotted. infile and outfile names are given
 by default but can be changed without flag. This function is intended
 to provide a summary of important features of migration for further analysis
+
+Copyright (C) 2023 Alejandra Camelo Cruz
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+contact email: camelocruz@uni-potsdam.de
+
 """
 
 import argparse
@@ -64,13 +82,14 @@ if __name__ == '__main__':
         'results/scatter_internal_migration.png')
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('infiles', type=str, nargs='*',
-                        default=[sex_age_data, external_data,
-                                 internal_data])
+
     parser.add_argument('outfiles', type=str, nargs='*',
                         default=[sex_age_output, external_line_output,
                                  external_bar_output, internal_output],
                         help='name of output files. In order they have to be ')
+    parser.add_argument('--infiles', type=str, nargs='*',
+                        default=[sex_age_data, external_data,
+                                 internal_data])
     parser.add_argument('-y', '--years', type=int, default=6,
                         help='number of years to be plotted (max 21)')
     parser.add_argument('-nc', '--numcountries', type=int, default=5,
@@ -79,7 +98,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--country', type=str, default=None,
                         help='country to be plotted')
     parser.add_argument('-fc', '--federalcountry', type=str, default=None,
-                        help='country to be plotted')
+                        help='federal country to be plotted')
     parser.add_argument('-age', '--age_span', nargs='*',
                         default=[10, 20, 30, 40, 50],
                         help='list containing age span to be plotted')

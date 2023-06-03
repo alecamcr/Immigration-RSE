@@ -8,6 +8,24 @@ only that country will be plotted. infile and outfile names are given
 by default but can be changed without flag.
 If optional argument kind is specified, only bar plot or only line plot
 will be plotted
+
+Copyright (C) 2023 Alejandra Camelo Cruz
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+contact email: camelocruz@uni-potsdam.de
+
 """
 
 import argparse
@@ -142,14 +160,14 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description=__doc__)
 
-    parser.add_argument('infile', type=str,
-                        nargs='?', default=data_path)
     parser.add_argument('outfile', type=str,
-                        nargs='?', default=[line_output_path, bar_output_path],
+                        nargs='*', default=[line_output_path, bar_output_path],
                         help='optional output file name.\
                              If both types are plotted\
                              first name for line plot\
                              and second name for bar plot')
+    parser.add_argument('--infile', type=str,
+                        nargs='*', default=data_path)
     parser.add_argument('-k', '--kind', type=str,
                         help='kind of plot to present data. line or bar\
                              by default both are plotted')
