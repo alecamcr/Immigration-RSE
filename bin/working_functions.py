@@ -166,7 +166,7 @@ def subset_age(df, age: list):
 
     '''
 
-    df['years'] = df.years.str.replace(r'([a-z]*)', '')
+    df['years'] = df.years.str.replace(r'([a-z]*)', '', regex=True)
     df['years'] = pd.to_numeric(df['years'], errors='coerce')
     df_age = df.loc[df['years'].isin(age)]
 

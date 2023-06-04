@@ -78,7 +78,7 @@ def draw_line_plot(data, years=6, numcountries=5, country=None):
     return line_plot
 
 
-def draw_bar_plot(data, years=6, num_countries=5, country=None):
+def draw_bar_plot(data, years=6, numcountries=5, country=None):
     '''
     This function draws a bar plot showing number of immigrants
     per n chosen year (by default 6) of chosen countries (by default 5)
@@ -107,7 +107,7 @@ def draw_bar_plot(data, years=6, num_countries=5, country=None):
     df_to_draw, selected_years = wf.subset_years(df_to_draw, years,
                                                  return_years=True)
     df_to_draw = wf.get_most_migrant_countries(df_to_draw,
-                                               num_countries, country)
+                                               numcountries, country)
 
     title = wf.make_title(data)
     bar_plot = sns.catplot(data=df_to_draw, x='country',

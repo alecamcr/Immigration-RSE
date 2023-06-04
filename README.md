@@ -42,7 +42,11 @@ This project is written using python 3 and it is important to have the following
 	
 2. Seaborn
 
+	You can install seaborn using:
+
 		$ pip install seaborn
+		
+	Otherwise refer to the [installation guide](https://seaborn.pydata.org/installing.html) of the [Seaborn main page](https://seaborn.pydata.org/index.html).
 
 # Usage guide
 
@@ -53,26 +57,26 @@ This project is composed from 3 main programs wich might be used independently o
 - migration in the past 6 years from 2021 
 - 5 origin countries in the world with the most migrants coming to Germany
 - 5 federal countries receiving most migration
-- Sex from migrants with 10, 20, 30, 40 and 50 years
+- Sex of migrants with 10, 20, 30, 40 and 50 years
 
 It takes corresponding datasets and save output plots with default file names in the results folder.
 
 	$ python bin/migration_summary.py
 	
-However the name of the output files can be changed with positional arguments. There are four outputfiles but if only some names are given, it'll order the names as follows: (external migration line, external 
+However the name of the output files can be changed with positional arguments. There are four output files but if only some names are given, it'll order the names 1) sex and age, 2) external migration line, 3) external migration bar and 4) internal migration:
 
 	$ python bin/migration_summary.py results/first_name.png ...
 
 If specific information wants to be plotted, such as specific age span, sex, number of year, number of countries or specific country, it can be done with the following flags:
 
-- `-y, --years` number of years to be plotted (max 21)
-- `-nc, --numcountries` number of countries to be plotted (ordered by the n countries with most migrants)
-- `-c, --country` country to be plotted
-- `-fc, --federalcountry` federal country to be plotted
-- `-age, --age_span ` list containing age span to be plotted
-- `-s, --sex` sex to be plotted
+- `-y, --years` number of years to be plotted (max 21). *eg. 8*
+- `-nc, --numcountries` number of countries to be plotted (ordered by the n countries with most migrants) *e.g. 3*
+- `-c, --country` country to be plotted *eg. France*. Countries must be written in English with a capital letter at the start.
+- `-fc, --federalcountry` federal country to be plotted. *e.g. Baden-Wurttemberg* with capital initial letters and german names without special characters. If names are complex, link them with a minus sign (-).
+- `-age, --age_span ` list containing age span to be plotted *e.g 30 31 32 33 34 35*
+- `-s, --sex` sex to be plotted. Only *male* or *female* possible. If none is given both are plotted by default.
 
-e.g. the following program plots the 8 past years from 7 most migrant countries world (and federal) and female kids with 5, 6, 7, 8, 9 and 10 years
+For instance, the following program plots the 8 past years from 7 most migrant countries world (and Bundesländer) and female kids with 5, 6, 7, 8, 9 and 10 years
 
 	$ python bin/migration_summary.py -y 8 -nc 7 -age 5 6 7 8 9 10 -s female
 	
@@ -83,7 +87,7 @@ If I want to see Colombia and general information in the past 3 years:
 
 > **Note:** The flags will only change information for some of the plots but not for all of them, as not every data set has complete information. External migration does not contain information about sex and age and sex and age does not consider country.
 
-The summary program is built upon three other programs which plot specific information about external migration, internal migration and sex and age. These programs can also be used from the bash so that the arguments are only applied to specific plots. It'll allow to have more control over the plots.
+The summary program is built upon three other programs which plot specific information about external migration, internal migration and sex and age. These programs can also be used from the independently from the terminal so that the arguments are only applied to their specific output plots. It'll allow to have more control over the plots.
 
 ## External migration
 
@@ -102,13 +106,13 @@ optional arguments:
 - `-c, --country` country to be plotted
 - `-k, --federalcountry` federal country to be plotted
 
-It plots a bar and a line plot with information about countries from migrants. Specifically in this program it is possible to only plot one of the possible plots if argument kind is given:
+It plots a bar and a line plot with information about countries from migrants. Specifically in this program it is possible to only plot one of the possible plots if argument `-k --kind` is given:
 
 if only bar plot:
 
 	$ python bin/external_migration.py -k bar
 	
-or specifying name
+or specifying output name:
 
 	$ python bin/external_migration.py results/only_bar.png -k bar
 	
@@ -206,7 +210,7 @@ Full license text can be recovered [here](COPYING.txt)
 	version: 1.0.
 	date-released: '2023-06-04'
 	
-The information for citation can be used from the [cff file](CITATION.cff) in the root folder
+The information for citation can be used from the [.cff file](CITATION.cff) in the root folder
 
 # Contact information
 
